@@ -1,0 +1,30 @@
+type Query {
+      getToDos: [Todo!] ,
+      getTodosByUser(id:ID!):[Todo!],
+      getUserByTodo(id:ID!):User
+    }
+
+    enum TodoStatus{
+        WAITING
+        IN_PROGRESS
+        CANCELED
+        DONE
+    }
+
+    type Todo {
+        id: ID!,
+        name:String!,
+        content:String!,
+        status:TodoStatus!
+        user: User
+    }
+
+
+    type User {
+        id: ID!,
+        name:String!,
+        email:String!,
+        todos:[Todo!]
+    }
+
+    
