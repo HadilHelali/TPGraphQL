@@ -1,7 +1,8 @@
 type Query {
-      getToDos: [Todo!] ,
-      getTodosByUser(id:ID!):[Todo!],
-      getUserByTodo(id:ID!):User
+    getToDos: [Todo!] ,
+    getTodoById(id: Int): Todo!
+    getUsers: [User]!
+    getUserById(id: Int): User!
     }
 
     enum TodoStatus{
