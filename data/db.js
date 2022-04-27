@@ -18,7 +18,7 @@ export const db = {
             id: 3,
             name: "Famille",
             content: "faire visite à ma grand-mère",
-            status:"WAINTING",
+            status:"WAITING",
             userId: 1
         }
     ],

@@ -5,7 +5,7 @@ export const Mutation = {
         if (!exist) {
         throw new Error("le user n'existe pas");
         } else {
-            newTodo = { id: db.todos.length ? db.todos[db.todos.length - 1].id + 1 : 1, status: "WAITING",...addTodoInput};
+            const newTodo = { id: db.todos.length ? db.todos[db.todos.length - 1].id + 1 : 1, status: "WAITING",...addTodoInput};
             db.todos.push(newTodo);
             pubsub.publish("persistTodo",{ persistTodo: { todo: newTodo , mutation: "ADD"} });
             return newTodo ;
