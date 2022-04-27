@@ -31,7 +31,7 @@ export const Mutation = {
     },
     
     deleteTodo:(parent, { TodoId }, { db , pubsub }, info) => {
-        const indexTodo = db.todos.findIndex((todo)=> todo.id=== id);
+        const indexTodo = db.todos.findIndex((todo)=> todo.id === TodoId);
         if(indexTodo === -1){
             throw new Error("Todo innexistant");
         }else {
