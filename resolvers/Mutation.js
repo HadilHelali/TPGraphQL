@@ -7,7 +7,7 @@ export const Mutation = {
         } else {
             newTodo = { id: db.todos.length ? db.todos[db.todos.length - 1].id + 1 : 1, status: "WAITING",...addTodoInput};
             db.todos.push(newTodo);
-            pubsub.publish("persistTodo",{ persistTodo: { newTodo, mutation: "ADD"} });
+            pubsub.publish("persistTodo",{ persistTodo: { todo: newTodo , mutation: "ADD"} });
             return newTodo ;
         }
     },
@@ -24,7 +24,7 @@ export const Mutation = {
                 for(let key in modifTodoInput) {
                     todo[key]= modifTodoInput[key];
                 }
-                pubsub.publish("persistTodo",{ persistTodo: { todo, mutation: "UPDATE"} });
+                pubsub.publish("persistTodo",{ persistTodo: { todo: todo, mutation: "UPDATE"} });
                 return todo;
                 }
             }
@@ -36,7 +36,7 @@ export const Mutation = {
             throw new Error("Todo innexistant");
         }else {
         const [todo] = db.todos.splice(indexTodo,1);
-        pubsub.publish("persistTodo",{ persistTodo: { todo, mutation: "DELETE"} });
+        pubsub.publish("persistTodo",{ persistTodo: { todo: todo, mutation: "DELETE"} });
         return todo;
         }
     }
