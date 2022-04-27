@@ -12,14 +12,41 @@ type Query {
         DONE
     }
 
+    type TodoSubscriptioPayload {
+    todo: Todo!
+    mutation: MutationOperationType!
+    }
+
+    type Subscription {
+    persistTodo: TodoSubscriptioPayload!
+    }
+
+    enum MutationOperationType {
+     UPDATE
+     DELETE
+     ADD
+    }
+
+    input AddTodoInput {
+    name: String!,
+    content:String!,
+    userId: Int!
+    }
+
+    input ModifTodoInput {
+    name: String,
+    content:String,
+    status:TodoStatus,
+    userId: Int
+    }
+
     type Todo {
         id: ID!,
         name:String!,
         content:String!,
-        status:TodoStatus!
+        status:TodoStatus!,
         user: User
     }
-
 
     type User {
         id: ID!,
@@ -27,5 +54,12 @@ type Query {
         email:String!,
         todos:[Todo!]
     }
+
+    type Mutation {
+        addTodo(addTodoInput: AddTodoInput ): Todo!,
+        modifTodo(id: Int , modifTodoInput: ModifTodoInput ): Todo,
+        deleteTodo(TodoId: Int): Todo
+    }
+
 
     
